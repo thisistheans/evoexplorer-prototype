@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Testing Graphs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+	
+	<style>
+	body{
+    background-color:#F8FBEF;
+	}
+	.button {
+		position: relative;
+		background-color: #1C1C1C;
+		border: none;
+		font-size: 28px;
+		color: #FFFFFF;
+		padding: 20px;
+		width: 200px;
+		text-align: center;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+		text-decoration: none;
+		overflow: hidden;
+		cursor: pointer;
+	}
+
+	.button:after {
+		content: "";
+		background: #f1f1f1;
+		display: block;
+		position: absolute;
+		padding-top: 300%;
+		padding-left: 350%;
+		margin-left: -20px !important;
+		margin-top: -120%;
+		opacity: 0;
+		transition: all 0.8s
+	}
+
+	.button:active:after {
+		padding: 0;
+		margin: 0;
+		opacity: 1;
+		transition: 0s
+	}
+	</style>
+	
+</head>
+
+<body>
+	<button class='button' id='fillChart'>Elements</button>
+    <canvas height='75' width='300' id='barChart'></canvas>
+	
+	<script>
+	$(document).ready(function(){
+
+	 var numbers = [];
+
+	//########################---Array Of Random Numbers----########################
+	  function createNumbers(){
+		numbers = [];
+		for(var i = 0; i < 6; i++){
+		  var random = Math.floor((Math.random() * 100) + 1);
+		  numbers.push(random);
+		}
+	  };
+
+	  //########################---Fill Chart With Array----########################
+	  $('#fillChart').click(function(){
+		barChart.data.datasets[0].backgroundColor = "rgba(192,192,192,1)";
+		createNumbers();
+		console.log('Not Sorted:');
+		for(var i = 0; i < numbers.length; i++){
+		  console.log(numbers[i]);
+		}
+		fillData()
+		barChart.update();
+	  });
+
+	  //########################---Fill Data With Array----########################
+	  function fillData(){
+	  barChart.data.datasets[0].backgroundColor = [];
+		for(var i = 0; i < numbers.length; i++){
+		  barChart.data.datasets[0].data[i] = numbers[i];
+		  barChart.data.datasets[0].backgroundColor[i] = "green";
+		  console.log('Data:' + barChart.data.datasets[0].data[i]);
+		}
+	  }
+
+	//##############################---Sort Array----###############################
+		$('#sort').click(function(){
+		  shellSort(numbers);
+		  console.log('Sorted');
+		  for(var i = 0; i < numbers.length; i++){
+			console.log(numbers[i]);
+		  }
+		  fillData();
+		  barChart.data.datasets[0].backgroundColor[0] = "red";
+		  //barChart.datasets[0].bars[0].backgroundColor = "rgba(000,111,111,55)";
+		  barChart.update();
+		});
+
+	  //##############################---shellSort----##############################
+	  function shellSort (a) {
+		for (var h = a.length; h = parseInt(h / 2);) {
+			for (var i = h; i < a.length; i++) {
+				var k = a[i];
+				for (var j = i; j >= h && k < a[j - h]; j -= h)
+					a[j] = a[j - h];
+				a[j] = k;
+			}
+		}
+		return a;
+	}
+
+	  //##############################---Bar Chart----##############################
+	  var ctx = $('#barChart');
+	  var barChart = new Chart(ctx, {
+		  type: 'horizontalBar',
+		  data: {
+			  labels: ["Element 1", "Element 2", "Element 3", "Elemenmt 4", "Element 5"],
+			  datasets: [{
+				  label: 'Sort',
+				  data: [0,0,0,0,0],
+				  backgroundColor: [],
+				  borderColor: [],
+				  borderWidth: 1
+			  }]
+		  },
+		  options: {
+			  scales: {
+				  yAxes: [{
+					  ticks: {
+						  beginAtZero:true
+					  }
+				  }]
+			  }
+		  }
+	  });
+
+
+
+
+	});
+	</script>
+</body>
+</html>

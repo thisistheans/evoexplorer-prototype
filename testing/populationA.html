@@ -1,0 +1,585 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Population A Demo</title>
+	<script src="lottie.js"  type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.css">
+<style>
+	body {
+		margin:0px;
+		padding:0px;
+	}
+	#animationContainer {
+		width:74%;
+		max-height: 610px;
+  		display: inline-block;
+		overflow: hidden;
+		transform: translate3d(0, 0, 0);
+		box-sizing: border-box;
+	}
+    #ui {
+        background-color: #333;
+        padding: 1em;
+		max-width:980px;
+		height:50px;
+    }
+	#graph {
+		width:25%;
+		padding:20px;
+  		display: inline-block;
+		max-height:610px;
+		box-sizing: border-box;
+	}
+	#barChart {
+		height:100%;
+	}
+	h7 {
+		display:block;
+		text-align:left;
+		font:13px "Poppins", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+		font-weight: 500;
+		color: #000;
+		margin:1px 0px 15px 0px;
+	}
+	#display{
+		max-width:980px;
+		height:150px;
+		text-align:right;
+		border:1px solid #E6E6E6;
+		padding:10px 15px;
+		background: #FFF;
+		font-size:12px;
+		line-height:16px;
+		margin:10px;
+		box-sizing: border-box;
+	}
+	#generations, #timepassed {
+		text-align: right;
+		margin-right:3px;
+	}
+	.pass {
+		background: #F2F2F2;
+	}
+	.visualization {
+		max-height:610px;
+		max-width:980px;
+	}
+	#ex1Slider {
+		width:90%;
+		float:right;
+	}
+	#display-labels {
+		width:10%;
+		float: left;
+		padding-top:5px;
+		line-height:22px;
+	}
+	#ex1Slider .slider-selection {
+		background: transparent;
+		border-radius: 0px;
+		margin-left:0px;
+		padding:0px;
+		box-shadow: none;
+}
+	#ex1Slider .slider-track {
+		width:100%;
+		height:50px;
+		border-radius: 0px;
+		padding:0px;
+		margin:0px;
+		background: url(bg.png);
+		background-size: 100% 100%;
+		box-shadow: none;
+	}
+	.slider-track .slider-track-high {
+		background:#FFF;
+	}
+	
+	.slider-handle.custom {
+	background: transparent none;
+	/* You can customize the handle and set a background image */
+}	
+	
+	.slider-handle.custom::before {
+		border-left:3px solid #333;
+		display:block;
+		height:65px;
+		margin-top:-2px;
+		margin-left:10px;
+		content: '\2002'; /*unicode star character*/
+}
+
+	#jump {
+		width:50%;
+		float:left;
+	}
+	#play {
+		width:50%;
+		float:right;
+		text-align:right;
+	}
+	#jump input, #play input{
+		font-size:13px;
+		padding:1px 10px;
+		margin-right: 3px;
+		color: #FFF;
+		background: #9A9A9A;
+		border-radius: 30px;
+		border:0px;
+	}
+	.highlight {
+		stroke: red;
+		stroke-width: 1px;
+	}
+	#traittoggles {
+		margin:0px;
+		padding:0px;
+		height:150px;
+		float:left;
+	}
+	.highlighttext {
+		font-weight:bold;
+		color: red;
+	}
+	.clear-selection {
+		background: #FAFAFA;
+		border-radius: 30px;
+		font-size:12px;
+		border:0px;
+	}
+	.play{
+	background:#58C5A7!important;
+	color:#FFF;
+	}
+	.pause {
+		background:#F55F5E!important;
+		color:#FFF;
+	}
+	</style>
+</head>
+
+<body>
+    <div id="ui">
+	
+    <div id="jump"><input id="prevGen_btn" type="button" value="previous generation" />
+    <input id="nextGen_btn" type="button" value="next generation" /></div>
+		
+    <div id="play"><input id="start_btn" type="button" value="play" class="play" />
+    <input id="pause_btn" type="button" value="pause" class="pause" /></div>
+    </div>
+	<div class="visualization">
+	<div id="animationContainer"></div>
+	<div id="graph">
+		<div id="traittoggles">
+					<input type="radio" name="trait" value="Light" onclick="highlightTraitA()" checked="checked"> <span id="highlightA" class="highlighttext">Dark-coloured moths</span><br>
+					<input type="radio" name="trait" value="Dark" onclick="highlightTraitB()"> <span id="highlightB">Light-coloured moths</span>
+			<button onClick="resetHighlight()" class="clear-selection">Clear selection</button>
+				</div>	
+		<h7>Total number of individuals:</h7>
+		<canvas id="barChart" height="350"></canvas>
+		</div>
+	</div>
+	<div id="display">
+		<h7>Time passed</h7>
+				<div id="display-labels"><div id="generations">0 Generation</div>
+				<div id="timepassed">0 Years</div></div>
+				<input id="slider" data-slider-id="ex1Slider" type="text" data-slider-min="0" data-slider-max="2263" data-slider-step="1" data-slider-value="0"  data-slider-handle="custom"/>
+    </div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.js"></script>
+	<script src="../js/bootstrap-notify.min.js"></script>
+	<script>
+		
+		
+		// Get DOM input objects
+        var pause_btn = document.getElementById("pause_btn");
+        var start_btn = document.getElementById("start_btn");
+        var nextGen_btn = document.getElementById("nextGen_btn");
+        var prevGen_btn = document.getElementById("prevGen_btn");
+		var counter;
+		var count = 0;
+		var fakecount;
+		var generations = document.getElementById("generations"); // div for generation text
+		var timepassed = document.getElementById("timepassed"); // div for time passed text
+		var Achecked = 0; 
+		var Bchecked = 0;
+		var traitA_1 = document.getElementsByClassName("p_dark");
+		var traitA_2 = document.getElementsByClassName("darkpepperedmoth");
+		var traitB_1 = document.getElementsByClassName("p_light");
+		var traitB_2 = document.getElementsByClassName("lightpepperedmoth");
+		var notifcount = 0;
+
+		
+		var slider = new Slider('#slider', {
+		});
+
+		var ctx = document.getElementById("barChart");
+		var barChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ["Dark", "Light"],
+				datasets: [{
+					label: 'Number of individuals',
+					data: [],
+					backgroundColor: [],
+					borderColor: [],
+					borderWidth: 1
+				}]
+			},
+			options: {
+			  legend: {
+					display: false
+				},
+						scales: {
+							yAxes: [{
+								ticks: {
+									stepSize: 5,
+									beginAtZero:true,
+									max: 25
+								}
+							}]
+						}
+					}
+				});
+		
+		function highlightGraph (colour, $a, $b) {
+			barChart.data.datasets[0].backgroundColor[$a] = colour;
+			barChart.data.datasets[0].backgroundColor[$b] = 'rgba(0, 0, 0, 0.1)';
+			barChart.update();
+		}
+		
+		function resetHighlight() {
+			Achecked = 0;
+			Bchecked = 0;
+			$('.lightpepperedmoth').removeClass("highlight");
+			$('.parent_light').removeClass("highlight");
+			$('.darkpepperedmoth').removeClass("highlight");
+			$('.parent_dark').removeClass("highlight");
+			$('#highlightB').removeClass("highlighttext");
+			$('#highlightA').removeClass("highlighttext");
+			$("input[name='trait']").prop('checked', false);
+			barChart.data.datasets[0].backgroundColor[0] = 'rgba(0, 0, 0, 0.1)';
+			barChart.data.datasets[0].backgroundColor[1] = 'rgba(0, 0, 0, 0.1)';
+			barChart.update();
+			
+		}
+
+		/* Highlights trait A */
+		function highlightTraitA() {
+			$('.darkpepperedmoth').addClass("highlight");
+			$('.parent_dark').addClass("highlight");
+			$('.lightpepperedmoth').removeClass("highlight");
+			$('.parent_light').removeClass("highlight");
+			$('#highlightA').addClass("highlighttext");
+			$('#highlightB').removeClass("highlighttext");
+
+			Achecked = 1;
+			Bchecked = 0;
+
+			highlightGraph('#FF8657', 0, 1);
+		}
+
+		/* Highlights trait B */
+		function highlightTraitB() {
+			$('.darkpepperedmoth').removeClass("highlight");
+			$('.parent_dark').removeClass("highlight");
+			$('.lightpepperedmoth').addClass("highlight");
+			$('.parent_light').addClass("highlight");
+			$('#highlightB').addClass("highlighttext");
+			$('#highlightA').removeClass("highlighttext");
+
+			Achecked = 0;
+			Bchecked = 1;
+
+			highlightGraph('#69BFFF', 1, 0);
+		}
+		function updateChart() {
+			counter = animInstance.currentRawFrame;
+			console.log(counter);
+			if (counter < 62) {
+				notifcount = 0;
+				generations.innerHTML = "0 Generation";
+				timepassed.innerHTML = "0 Years";
+				barChart.data.datasets[0].data = [15, 5];
+				barChart.update();
+			}
+			else if (counter >= 62 && counter < 174) {
+				notifcount = 0;
+				generations.innerHTML = "1st Generation";
+				timepassed.innerHTML = "1 Year";
+				barChart.data.datasets[0].data = [13, 5];
+				barChart.update();
+			}
+			else if (counter >= 174 && counter < 284) {
+				notifcount = 0;
+				generations.innerHTML = "2nd Generation";
+				timepassed.innerHTML = "2 Years";
+				barChart.data.datasets[0].data = [15, 6];
+				barChart.update();
+			}
+			else if (counter >= 284 && counter < 394) {
+				notifcount = 0;
+				generations.innerHTML = "3rd Generation";
+				timepassed.innerHTML = "3 Years";
+				barChart.data.datasets[0].data = [14, 4];
+				barChart.update();
+			}
+			else if (counter >= 394 && counter < 504) {
+				generations.innerHTML = "4th Generation";
+				timepassed.innerHTML = "4 Years";
+				barChart.data.datasets[0].data = [14, 6];
+				barChart.update();
+				if (notifcount == 0) {
+					$.notify({
+					// options
+					message: '<b>Change in environment:</b> tree bark lightens' 
+					},{
+						// settings
+						type: 'warning', 
+						element: 'div.visualization'
+					});
+					notifcount = 1;
+				}
+				console.log(notifcount);
+			}
+			else if (counter >= 504 && counter < 614) {
+				notifcount = 0;
+				generations.innerHTML = "5th Generation";
+				timepassed.innerHTML = "5 Years";
+				barChart.data.datasets[0].data = [12, 4];
+				barChart.update();
+			}
+			else if (counter >= 614 && counter < 724) {
+				notifcount = 0;
+				generations.innerHTML = "6th Generation";
+				timepassed.innerHTML = "6 Years";
+				barChart.data.datasets[0].data = [10, 4];
+				barChart.update();
+			}
+			else if (counter >= 724 && counter < 834) {
+				notifcount = 0;
+				generations.innerHTML = "Generation 7";
+				timepassed.innerHTML = "7 Years";
+				barChart.data.datasets[0].data = [11, 5];
+				barChart.update();
+			}
+			else if (counter >= 834 && counter < 944) {
+				notifcount = 0;
+				generations.innerHTML = "8th Generation";
+				timepassed.innerHTML = "8 Years";
+				barChart.data.datasets[0].data = [10, 6];
+				barChart.update();
+			}
+			else if (counter >= 944 && counter < 1054) {
+				notifcount = 0;
+				generations.innerHTML = "9th Generation";
+				timepassed.innerHTML = "9 Years";
+				barChart.data.datasets[0].data = [8, 7];
+				barChart.update();
+			}
+			else if (counter >= 1054 && counter < 1164) {
+				notifcount = 0;
+				generations.innerHTML = "10th Generation";
+				timepassed.innerHTML = "10 Years";
+				barChart.data.datasets[0].data = [9, 7];
+				barChart.update();
+			}
+			else if (counter >= 1164 && counter < 1274) {
+				notifcount = 0;
+				generations.innerHTML = "11th Generation";
+				timepassed.innerHTML = "11 Years";
+				barChart.data.datasets[0].data = [7, 9];
+				barChart.update();
+			}
+			else if (counter >= 1274 && counter < 1384) {
+				notifcount = 0;
+				generations.innerHTML = "12th Generation";
+				timepassed.innerHTML = "12 Years";
+				barChart.data.datasets[0].data = [6, 10];
+				barChart.update();
+			}
+			else if (counter >= 1384 && counter < 1494) {
+				notifcount = 0;
+				generations.innerHTML = "13th Generation";
+				timepassed.innerHTML = "13 Years";
+				barChart.data.datasets[0].data = [6, 12];
+				barChart.update();
+			}
+			else if (counter >= 1494 && counter < 1604) {
+				notifcount = 0;
+				generations.innerHTML = "14th Generation";
+				timepassed.innerHTML = "14 Years";
+				barChart.data.datasets[0].data = [5, 14];
+				barChart.update();
+			}
+			else if (counter >= 1604 && counter < 1714) {
+				notifcount = 0;
+				generations.innerHTML = "15th Generation";
+				timepassed.innerHTML = "15 Years";
+				barChart.data.datasets[0].data = [4, 15];
+				barChart.update();
+			}
+			else if (counter >= 1714 && counter < 1824) {
+				notifcount = 0;
+				generations.innerHTML = "16th Generation";
+				timepassed.innerHTML = "16 Years";
+				barChart.data.datasets[0].data = [4, 16];
+				barChart.update();
+			}
+			else if (counter >= 1824 && counter < 1934) {
+				notifcount = 0;
+				generations.innerHTML = "17th Generation";
+				timepassed.innerHTML = "17 Years";
+				barChart.data.datasets[0].data = [3, 17];
+				barChart.update();
+			}
+			else if (counter >= 1934 && counter < 2044) {
+				notifcount = 0;
+				generations.innerHTML = "18th Generation";
+				timepassed.innerHTML = "18 Years";
+				barChart.data.datasets[0].data = [2, 18];
+				barChart.update();
+			}
+			else if (counter >= 2044 && counter < 2154) {
+				notifcount = 0;
+				generations.innerHTML = "19th Generation";
+				timepassed.innerHTML = "19 Years";
+				barChart.data.datasets[0].data = [2, 19];
+				barChart.update();
+			}
+			else if (counter >= 2154 && counter < 2262) {
+				notifcount = 0;
+				generations.innerHTML = "19th Generation";
+				timepassed.innerHTML = "20 Years";
+				barChart.data.datasets[0].data = [3, 19];
+				barChart.update();
+			}
+		}
+        
+        var animationContainer = document.getElementById("animationContainer");
+        var anim = {
+            container: animationContainer, // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            rendererSettings: {
+            preserveAspectRatio: "xMidYMid meet"
+            },
+            path: 'case1_exp1_data.json' // the path to the animation json
+            }
+        var animInstance = lottie.loadAnimation(anim);
+        
+        function onEnterAnimationFrame(e) {
+            //console.log(e);
+            slider.setValue(e.currentTime);
+			
+			updateChart();
+        }
+        // Fired after config ready
+        function onAnimDataReady(e) {
+            console.log("data_ready");
+            console.log(animInstance.getDuration(true));
+        }
+        // Fired first
+        function onAnimConfigReady(e) {
+            console.log("config_ready");
+            console.log(animInstance.getDuration(true));
+            
+            slider.on("slide",onSliderDown);
+        }
+        function onAnimDomLoaded(e) {		
+			highlightTraitA();
+            console.log("anim elements have been added to the DOM");
+        }
+        
+        function onPauseClick(e){
+            console.log("Pause clicked");
+            animInstance.pause();
+        }
+        function onStartClick(e){
+            console.log("Start clicked");
+            animInstance.play();
+        }
+        function onNextGen(e){
+			counter = animInstance.currentRawFrame;
+			fakecount = counter;
+			fakecount -= 27;
+			if(fakecount % 110 == 0 || counter == 27){
+				counter += 110;
+			}
+			else {
+				counter -= 27;
+				counter = Math.ceil(counter/110);
+				counter *= 110;
+				counter +=27;
+			}
+            animInstance.goToAndStop(counter, true);
+        }
+		
+		
+        function onPrevGen(e){
+			counter = animInstance.currentRawFrame;
+			fakecount = counter;
+			fakecount -= 27;
+			if(counter <= 27) {
+				counter = 27;
+			}
+			else if(fakecount % 110 == 0){
+				counter -= 110;
+			}
+			else {
+				counter -= 27;
+				counter = Math.floor(counter/110);
+				counter *= 110;
+				counter +=27;
+			}
+            animInstance.goToAndStop(counter, true);
+        }
+        
+        function onSliderDown(e)
+        {
+            animInstance.pause();
+            animInstance.removeEventListener("enterFrame", onEnterAnimationFrame);
+            slider.on("change", onSliderChange);
+            window.addEventListener("mouseup", onSliderUp);
+        }
+        function onSliderUp(e)
+        {
+            animInstance.addEventListener("enterFrame", onEnterAnimationFrame);
+            slider.off("change", onSliderChange);
+            window.removeEventListener("mouseup", onSliderUp);
+        }
+        
+        function onSliderChange(e)
+        {
+            updateChart();
+			
+			console.log("Slider change " + slider.getValue() + " " + animInstance.currentFrame + " "+ animInstance.getDuration(true));
+            // see https://github.com/airbnb/lottie-web
+            animInstance.goToAndStop(slider.getValue()*41.66, false);
+			
+        }
+        
+        animInstance.addEventListener("enterFrame", onEnterAnimationFrame);
+        animInstance.addEventListener("data_ready", onAnimDataReady);
+        animInstance.addEventListener("config_ready", onAnimConfigReady);
+        animInstance.addEventListener("DOMLoaded", onAnimDomLoaded);
+        
+        pause_btn.addEventListener("click", onPauseClick);
+
+        start_btn.addEventListener("click", onStartClick);
+
+        nextGen_btn.addEventListener("click", onNextGen);
+		
+        prevGen_btn.addEventListener("click", onPrevGen);
+
+        console.log(animInstance);
+	</script>
+</body>
+</html>

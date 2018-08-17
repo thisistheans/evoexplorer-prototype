@@ -1,0 +1,476 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* * {
+	border:1px solid #FF0004;
+} */
+
+/* General */
+.step, .remove-input {
+	overflow: auto;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+.instruction, .manipulation {
+	font-size:14px;
+	background: #F2F2F2;
+	padding:5px 10px;
+	border-right:1px solid #EFEFEF;
+	border-radius: 5px;
+	margin-bottom:7px;
+}
+.instruction {
+	background: #E5E5E5;
+}
+.instruction img {
+	max-width:14px;
+	margin:-3px 7px 0 0;
+	padding:0px;
+}
+#expview .alert {
+	font-size:12px;
+	line-height:14px;
+	width:250px;
+}
+.casestudy4 {
+	width:80%;
+}
+/* Viewport area */
+
+#expview {
+	border-right:1px solid #E6E6E6;
+	border-left:1px solid #E6E6E6;
+	background:#FFF;
+	width: 100%;
+	height:auto;
+	overflow:auto; 
+}
+.visualization {
+	width:75%;
+	float:right;
+	overflow:auto;
+	
+}
+#animationContainer {
+	width:100%;
+	height: 90%;
+	overflow: hidden;
+	transform: translate3d(0, 0, 0);
+	box-sizing: border-box;
+}
+#data-display, #case4-display {
+	font-size:13px;
+	width:25%;
+	padding:0px;
+	box-sizing: border-box;
+	display: inline-block;
+	border-right:1px solid #E6E6E6;
+	overflow:auto;
+}
+#case4-display {
+	width: 100%;
+	border: none;
+}
+#case4-display input {
+	margin-right:5px;
+}
+#graph {
+	padding:10px;
+}
+#ui {
+	display: inline-block;
+	padding:0px 10px 10px 10px;
+	width:100%;
+}
+#population {
+	margin-top:15px;
+	display:block;
+	width:100%;
+	border:1px solid #232123;
+	background:#232123;
+	padding: 10px 15px;
+}
+#population-heading {
+	letter-spacing:1px;
+	font:bold 14px 'Poppins', sans-serif;
+	color:#FFF;
+	text-transform: uppercase;
+}
+#variable-heading {
+	float:right;
+	color:#FFF;
+	font:14px 'Poppins', sans-serif;
+	font-weight: 500;
+}
+#change {
+	padding: 10px 5px 0px 5px;
+	text-align: left;
+	width: 100%;
+	visibility: hidden;
+}
+#change p{
+	color:#856405;
+	font:13px 'Lato', sans-serif;
+	padding:2px 7px;
+	border-radius: 35px;
+	display: inline;
+	background:#FFF4CD;
+	border:1px solid #FFEEBA;
+}  
+
+.change-icon {
+	font-size:15px;
+}
+/* Case Study 4 toggles */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+.switch input {display:none;}
+
+.toggleslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.toggleslider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .toggleslider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.toggleslider.round {
+  border-radius: 24px;
+}
+
+.toggleslider.round:before {
+  border-radius: 50%;
+}
+.switch-label {
+	font-size:13px;
+	line-height:13px;
+	padding:5px 7px;
+}
+
+/* Trait toggles */
+#traitA, #traitB {
+	display: inline;
+	width: 100px;
+	font-size:12px;
+	margin:0px;
+}
+h7 {
+	display:block;
+	text-align:left;
+	font:13px "Poppins", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	font-weight: 500;
+	color: #000;
+	margin:1px 0px 5px 0px;
+}
+#case4-display h7 {
+	display: inline-block;
+	margin-right:20px;
+}
+#display{
+	width:100%;
+	height:150px;
+	text-align:right;
+	border:1px solid #E6E6E6;
+	padding:10px 15px;
+	background: #FFF;
+	font-size:12px;
+	line-height:16px;
+	box-sizing: border-box;
+}
+#generations, #timepassed {
+	text-align: right;
+	margin-right:3px;
+}
+.pass {
+	background: #F2F2F2;
+}
+#ex1Slider {
+	width:88%;
+	float:right;
+}
+#display-labels {
+	width:10%;
+	float: left;
+	padding-top:5px;
+	line-height:22px;
+}
+#ex1Slider .slider-selection {
+	background: transparent;
+	border-radius: 0px;
+	margin-left:0px;
+	padding:0px;
+	box-shadow: none;
+}
+.slider-track .slider-track-high {
+	background:#FFF;
+}
+
+.slider-handle.custom {
+background: transparent none;
+/* You can customize the handle and set a background image */
+}	
+
+.slider-handle.custom::before {
+	border-left:3px solid #333;
+	display:block;
+	height:65px;
+	margin-top:-2px;
+	margin-left:10px;
+	content: '\2002'; /*unicode star character*/
+}
+
+#jump {
+	width:50%;
+	float:left;
+}
+#play {
+	width:50%;
+	float:right;
+	text-align:right;
+}
+#jump input, #play input{
+	padding:3px 10px;
+	margin-right: 3px;
+	color: #FFF;
+	background: #9A9A9A;
+	border-radius: 30px;
+	border:0px;
+	font:13px 'Poppins', sans-serif;
+	font-weight: 500;
+}
+.highlight {
+	stroke: #ff4438;
+	stroke-width: 1px;
+}
+#traittoggles {
+	margin:0px;
+	padding:10px;
+	border-bottom: 1px solid #e6e6e6;
+	overflow:auto;
+}
+.highlighttext {
+	font-weight:bold;
+	color: #ff4438;
+}
+#case4-display #highlightA, #case4-display #highlightB  {
+	padding-right:20px;
+	
+}
+.clear-selection, .reset-factors {
+	background: #E9E9E9;
+	border-radius: 30px;
+	border:0px;
+	float:right;
+	font:12px "Poppins", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	font-weight: 500;
+	margin:5px 0px 0px;
+	padding:2px 16px;
+	color:#454545;
+}
+.reset-factors {
+	margin-top:0px;
+	margin-bottom:7px;
+}
+.play{
+	background:#58C5A7!important;
+	color:#FFF;
+}
+.pause {
+	background:#F55F5E!important;
+	color:#FFF;
+}
+/* NOTEBOOK FORMATTING */
+.factors-label {
+	font-size:12px;
+	background: #000;
+	color:#FFF;
+	font-weight: bold;
+	padding:0px 4px;
+	margin:2px 4px 2px 0px;
+	border-radius: 3px;
+	display:inline-block;
+}
+#datalog {
+	width:100%;
+	font-size:13px;
+	margin:16px 0px;
+}
+input.form-control, .form-inline input {
+	width: 40px!important;
+	margin: 2px;
+	margin-right:5px;
+	padding:1px 2px;
+}
+
+.form-inline {
+	margin-bottom:10px;
+}
+.form-inline label {
+	margin-right: 5px;
+}
+#casestudy4 .form-inline {
+	border-bottom:1px solid #f2f2f2;
+	margin:0px;
+	padding:10px 0px;
+}
+
+button.datalog{
+	margin:0px;
+}
+#databuttons {
+	margin-top:10px;
+}
+#datalog h7{
+	margin-bottom:7px;
+}
+#datalog h5{
+	padding:15px;
+	border-bottom:1px solid #EEE;
+}
+#datalog-body {
+	padding:15px;
+}
+.data, .case4data {
+	width:100%;
+	height:70px;
+	padding:10px 0px;
+	border-bottom:1px solid #EEE;
+}
+.datalogarea {
+	margin:0px;
+	padding:0px;
+	width:35%;
+	float:left;
+}
+.traitdata {
+	width:65%;
+	float:right;
+	height:auto;
+}
+.case4data {
+	height:auto;
+}
+
+.case4data .datalogarea {
+	width:100%;
+	height:26px;
+	float:none;
+}
+.case4data .traitdata {
+	width:100%;
+	float:none;
+}
+.case4buttons {
+	float:right;
+	display: inline-block;
+	margin:0px;
+	padding:0px;
+}
+button.editlog, button.deletelog{
+	color: #999;
+	font-size:12px;
+	font-weight:bold;
+	background:none;
+	margin:0px;
+	padding:0px;
+	border:none;
+}
+button.editlog:hover, button.deletelog:hover {
+	color: #000;
+	text-decoration:underline;
+}
+
+.traitdata li, .traitdata ul {
+	margin:0px;
+	list-style: none;
+	padding:0px;
+}
+.nav-tabs li {
+	list-style:  none;
+	font:12px "Poppins", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	font-weight: 600;
+}
+.nav-tabs a{
+	letter-spacing: 1px;
+	padding:7px 15px;
+	display: block;
+	color: #666;
+	font-weight: normal;
+	text-transform: uppercase;
+	border-top:2px solid #FAFAFA;
+}
+.nav-tabs a:hover {
+	color: #000;
+	text-decoration:none;
+}
+.nav-tabs a.active{
+	color: #000;
+	font-weight:600;
+	background: #FFF;
+	border-top-color: #ff4438;
+	border-left:1px solid #e6e6e6;
+	border-right:1px solid #e6e6e6;
+}
+.tab-content {
+	background:#FFF;
+	border-left:1px solid #e6e6e6;
+	border-right:1px solid #e6e6e6;
+	border-bottom:1px solid #e6e6e6;
+}
+.entry {
+	overflow: hidden;
+  	opacity: 0;
+	height:0px;
+    transition:  all 0.4s ease-in-out; 
+	line-height:20px;
+}
+.open-notebook {
+    transition:  all 0.4s ease-in-out;  
+	height:auto;
+	opacity: 1;
+}
+.newentrybutton { 
+	height: auto;
+	opacity: 1;
+	overflow:auto;
+	text-align:right;
+    transition:  all 0.4s ease-in-out;  
+	line-height:20px; 
+}
+.close-notebook {
+	height: 0px;
+	opacity: 0;
+	overflow: hidden;
+    transition:  all 1s ease-in-out;
+}
+#darkcolour_edit, #lightcolour_edit {
+	float:left;
+}

@@ -1,0 +1,8 @@
+Notes
+
+storage session:
+- firstVisit (main, global)
+- progress (main, global)
+- resumeQuiz (quiz, quizzes)
+- useranswers (quiz, quizzes)
+- predictionsA (case1, predict A)

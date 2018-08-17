@@ -1,0 +1,164 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/analysis.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Natural Selection | Case Study 1</title>
+<!-- InstanceEndEditable -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="http://ettudis.three-words.net/4.gif" />
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:500,600,600i,700,700i|Lato:400,400i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	
+	<link  rel="stylesheet" href="../../../css/main.css">
+<!-- InstanceBeginEditable name="head" -->
+	<link href="http://annietseng.co/lightbox/css/lightbox.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../css/experiment.css">
+<!-- InstanceEndEditable -->
+</head>
+
+	<!-- InstanceBeginEditable name="bodyheading" -->
+<body>
+	<!-- InstanceEndEditable -->
+	<div class="side-container">
+		<div id="sidebar">
+			<div class="close-sidebar">
+			<a href="#" id="close-sidebar-toggle">
+                <span class="bar bar-close1"></span>
+                <span class="bar bar-close2"></span>
+                </a>
+			</div>
+			<ul class="menu">
+				<li tabindex="1"><a href="../../../index.html" class="menu-unit"><span class="underline">Evolution</span></a></li>
+				<li tabindex="2">Mutations &amp; Randomness</li>
+				<li tabindex="3">Natural Selection &rsaquo;
+					<ul class="submenu">
+						<li><a href="#" class="back">&lsaquo; Back</a></li>
+						<li><a href="#" class="menu-unit"><span class="underline">Natural Selection</span></a></li>
+						<li><a href="../../../natural-selection/">Introduction</a></li>
+						<li><a href="../../prequiz/">Pre-Quiz</a></li>
+						<li><a href="../../case1/">01. Heritability</a></li>
+						<li><a href="#">02. Genetic Variation</a></li>
+						<li><a href="#">03. Generation Time</a></li>
+						<li><a href="#">04. Bringing it all Together</a></li>
+						<li><a href="#">Summary</a></li>
+						<li><a href="#">Post-Quiz</a></li>
+					</ul>
+				</li>
+				<li tabindex="4">Genetic Drift</li>
+			</ul>                  
+		</div>
+	</div>  
+	
+	<div id="wrapper">
+	<header>
+		<div class="open-menu">                  
+                <a href="#" id="sidebar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </a>
+            </div>
+		<a class="nav-link" href="../../../index.html" ><font style="font-weight:800;">Evo</font>Explorer</a>
+		<div class="breadcrmb">
+		<!-- InstanceBeginEditable name="breadcrumb" -->
+				<a href="../../">Natural Selection</a> &rsaquo; 
+				<a href="../">Heritability</a> &rsaquo;
+				<a href="../1-scenario/">Scenario</a> &rsaquo;
+				<a href="../2-predict/">Predict</a> &rsaquo;
+				<a href="../3-experiment/">Experiment</a> &rsaquo;
+				<font class="breadcrmb-active">Results</font>
+			<!-- InstanceEndEditable -->
+			</div>
+	</header>
+	<div class="container">
+		
+		
+	
+
+	<div class="row">
+		<div class="col-4">
+			
+			<!-- InstanceBeginEditable name="heading" -->
+			<h4>Case Study 1</h4>
+			<h5>Results</h5>
+			<!-- InstanceEndEditable -->
+		
+			<!-- InstanceBeginEditable name="content" -->
+					<p>You’ve hired a statistician to help you plot the data. Take a look at your plotted data to observe the trends. Note the changes between the two populations and record your observations in your case study notebook.</p>
+					<div class="alert alert-warning" role="alert"><strong>Note:</strong> As you progress to higher-level evolution courses, you will discover that heritability is not binary and is rather complex. However, for the purposes of introducing heritability in the context of natural selection for this application, we’ve presented heritability as binary (present or not present). </div>
+					<p>Now that you have your data, it’s time to analyze them!</p>
+
+					<!-- InstanceEndEditable -->
+		
+		</div>
+		<div class="col-8" id="analysis">
+			<!-- InstanceBeginEditable name="figure" -->
+			
+			<div id="notebook-container">
+				<div id="notebook-heading">Case Study 1 Notebook</div>
+				<div id="notebook">
+					<div class="row">
+						<div id="popA_notes" class="col-xl-8">
+							<a href="assets/results_A-01.png" data-lightbox="results"><img src="assets/results_A-01.png" alt="results for population A"></a>
+							<a href="assets/results_A-01.png" data-lightbox="results-link" class="viewimg">click to view larger</a>
+						</div>
+						<div class="col-xl-4">
+							<h4>Moth Population A</h4>
+							<p><i class="fas fa-check"></i> Trait is <strong>heritable</strong></p>
+							<div class="form-group">
+								<textarea id="case1popA_notes" name="case1popA_notes" class="form-control stored" rows="5" placeholder="Add observations"></textarea>
+								<button class="notes" onClick="saveNotes(0);">Save notes</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div id="popB_notes" class="col-xl-8">
+							<a href="assets/results_B-01.png" data-lightbox="results"><img src="assets/results_B-01.png" alt="results for population B"></a>
+							<a href="assets/results_B-01.png" data-lightbox="results-link" class="viewimg">click to view larger</a>
+						</div>
+						<div class="col-xl-4">
+							<h4>Moth Population B</h4>
+							<p><i class="fas fa-check"></i> Trait is <strong>non-heritable</strong></p>
+							<div class="form-group">
+								<textarea id="case1popB_notes" name="case1popB_notes" class="form-control stored" rows="5" placeholder="Add observations"></textarea>
+								<button class="notes" onClick="saveNotes(1);">Save notes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- InstanceEndEditable -->
+		</div>
+	</div>
+	<div id="pagination">
+	<!-- InstanceBeginEditable name="pagination" -->
+						<a href="page2.html">&larr; Previous</a>
+						<span class="page">1 / 1</span>
+						<a href="../4-analysis/index.html">Analyze &rarr;</a>
+					<!-- InstanceEndEditable -->
+	</div>
+	
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
+	
+	<!-- InstanceBeginEditable name="scripts" -->	
+	<script>
+		var noteID_1 = 'case1popA_notes';
+		var noteID_2 = 'case1popB_notes';
+		var notediv_1 = '#case1popA_notes';
+		var notediv_2 = '#case1popB_notes';
+	</script>
+	<script type="text/javascript" src="../../../js/main.js"></script>
+	<script type="text/javascript" src="../../../js/notebook.js"></script>
+	<script src="http://annietseng.co/lightbox/js/lightbox-plus-jquery.js"></script>
+	
+	<!-- InstanceEndEditable -->
+		</div>
+</body>
+<!-- InstanceEnd --></html>

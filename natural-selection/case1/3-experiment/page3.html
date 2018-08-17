@@ -1,0 +1,227 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/experiment.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Natural Selection | Case Study 1</title>
+<!-- InstanceEndEditable -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="http://ettudis.three-words.net/4.gif" />
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:500,600,600i,700,700i|Lato:400,400i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	
+	<link  rel="stylesheet" href="../../../css/main.css">
+<!-- InstanceBeginEditable name="head" -->
+	<link  rel="stylesheet" href="../../css/experiment.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<style type="text/css">
+		.bg-original {
+			background: #333;
+		}
+		.bg-change {
+			background: #EEE;
+		}
+	</style>
+<!-- InstanceEndEditable -->
+</head>
+
+	<!-- InstanceBeginEditable name="bodyheading" -->
+<body>
+	<!-- InstanceEndEditable -->
+	<div class="side-container">
+		<div id="sidebar">
+			<div class="close-sidebar">
+			<a href="#" id="close-sidebar-toggle">
+                <span class="bar bar-close1"></span>
+                <span class="bar bar-close2"></span>
+                </a>
+			</div>
+			<ul class="menu">
+				<li tabindex="1"><a href="../../../index.html" class="menu-unit"><span class="underline">Evolution</span></a></li>
+				<li tabindex="2">Mutations &amp; Randomness</li>
+				<li tabindex="3">Natural Selection &rsaquo;
+					<ul class="submenu">
+						<li><a href="#" class="back">&lsaquo; Back</a></li>
+						<li><a href="#" class="menu-unit"><span class="underline">Natural Selection</span></a></li>
+						<li><a href="../../../natural-selection/">Introduction</a></li>
+						<li><a href="../../prequiz/">Pre-Quiz</a></li>
+						<li><a href="../../case1/">01. Heritability</a></li>
+						<li><a href="#">02. Genetic Variation</a></li>
+						<li><a href="#">03. Generation Time</a></li>
+						<li><a href="#">04. Bringing it all Together</a></li>
+						<li><a href="#">Summary</a></li>
+						<li><a href="#">Post-Quiz</a></li>
+					</ul>
+				</li>
+				<li tabindex="4">Genetic Drift</li>
+			</ul>                  
+		</div>
+	</div>  
+	
+	<div id="wrapper">
+	<header>
+		<div class="open-menu">                  
+                <a href="#" id="sidebar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </a>
+            </div>
+		<a class="nav-link" href="../../../index.html" ><font style="font-weight:800;">Evo</font>Explorer</a>
+		<div class="breadcrmb">
+		<!-- InstanceBeginEditable name="breadcrumb" -->
+				<a href="../../case1">Natural Selection</a> &rsaquo; 
+				<a href="../3-experiment">Heritability</a> &rsaquo;
+				<a href="1-scenario">Scenario</a> &rsaquo;
+				<a href="2-predict">Predict</a> &rsaquo;
+				<font class="breadcrmb-active">Experiment</font>
+			<!-- InstanceEndEditable -->
+			</div>
+	</header>
+	<div class="container">
+		
+		
+	
+
+	<div class="row">
+		<div class="col-3">
+			
+			<!-- InstanceBeginEditable name="heading" -->
+			<h4>Case Study 1</h4>
+			<h5>Experiment B</h5>
+			<!-- InstanceEndEditable -->
+
+			<!-- InstanceBeginEditable name="content" -->
+					<p>Let’s look at scenario B in which colour is <strong>non-heritable</strong>.</p>
+					<p>Consider a hypothetical scenario in which the population at the end of the Industrial Revolution consisted of 50% dark coloured moths.</p>
+					<p>Turn on the "non-heritable trait" button.
+					<div class="alert alert-success" role="alert"></div></p>
+					
+					<!-- InstanceEndEditable -->
+		</div>
+		
+		<div class="col-9" id="experiment">
+			<!-- InstanceBeginEditable name="figure" -->
+			<div id="population"><span id="population-heading">Moth Population</span>
+			
+			<div id="variableToggles">
+						<button class="toggle" id="Heritable" onclick="wipeOut(); startingPop1(); proceedExp(false)">Heritable trait</button>
+						<button class="toggle" id="Nonheritable" onclick="wipeOut(); startingPop2(); proceedExp(true)">Non-heritable trait</button>
+					</div></div>
+			<div id="traitDisplay">
+				<div id="traittoggles">
+					<h7>View individuals with a specific trait:</h7>
+					<div id="traitA"><input type="radio" name="trait" value="Light" onclick="highlightTraitA()" id="highlightA">Dark-coloured moths</div><br>
+					<div id="traitB"><input type="radio" name="trait" value="Dark" onclick="highlightTraitB()" id="highlightB">Light-coloured moths</div>
+				</div>	
+				<div id="graph">
+					<h7>Total number of individuals with a specific trait:</h7>
+					<canvas height="65px" id="barChart"></canvas>
+				</div>
+			</div>
+			
+            <div id="expview" class="bg-original"> 
+                <div id="change">
+                    <p><i class="fas fa-exclamation-circle"></i> <b>Change in environment:</b> tree bark lightens</p>
+                </div>
+				<div id="viewport">
+				</div>
+				<div id="animationNextBack">
+					<button id="goback" onclick="goBack()" class="goback" disabled><i class="fas fa-backward"></i> Backward</button>
+					<button id="goforward" onclick="goForward()" class="goforward" disabled>Forward <i class="fas fa-forward"></i></button>
+				</div>
+				<div id="animationToggles">
+					<button id="restart" onclick="restart()" class="restart" disabled>Replay <i class="fas fa-redo-alt"></i></button>
+					<button id="play" class="play" disabled>Play  <i class="fas fa-play"></i></button>
+				</div>
+            </div>
+
+
+           
+            <div id="display">
+				<h7>Time passed</h7>
+                <table width="100%">
+                    <tr>
+						 <td width="15%"><div id="generations">0 Generations</div></td>
+                        <td width="85%" class="pass">
+                            <div id="numGen"> 
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="15%"><div id="timepassed">0 Years</div></td>
+                        <td width="85%" class="pass">
+                            <div id="time">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+			<!-- InstanceEndEditable -->
+		</div>
+	</div>
+	<div id="pagination">
+	<!-- InstanceBeginEditable name="pagination" -->
+						<a href="archive/page2.html">&larr; Previous</a>
+						<button onClick="location.href='page4.html'" class="button" disabled>Next &rarr;</button>
+					<!-- InstanceEndEditable -->
+	</div>
+	
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script> 
+	
+	<!-- InstanceBeginEditable name="scripts" -->
+	<script>
+		var experimentID = "case1_popB";
+		var useranswers = "case1_popB_answers";
+		var label1 = "Dark-coloured";
+		var label2 = "Light-coloured";
+		var testingvar = "B";
+		var showPrediction = false;
+		var pop1_x = 15;
+		var pop1_y = 5;
+		var pop2_x = 12;
+		var pop2_y = 8;
+		var alerttext = 'You may now proceed to the next part of the experiment by clicking on the "next" button';
+		var poptitle_1 = "Moth Population A";
+		var poptitle_2 = "Moth Population B";
+		var data = [
+			[11, 10],
+			[9, 12],
+			[9, 8],
+			[12, 8],
+			[10, 10],
+			[7, 12],
+			[7, 13],
+			[8, 12],
+			[11, 9],
+			[12, 10],
+			[15, 5],
+			[10, 8],
+			[8, 12],
+			[9, 14],
+			[9, 11],
+			[10, 10],
+			[13, 10],
+			[11, 8],
+			[12, 10],
+			[11, 9],
+			[9, 12],
+			[10, 9],
+			[8, 12],
+			[9, 11] 
+			];
+	</script>
+	
+	<script type="text/javascript" src="../../js/main.js"></script>	
+	<script type="text/javascript" src="../../js/experiment.js"></script>
+	
+	<!-- InstanceEndEditable -->
+		</div>
+</body>
+<!-- InstanceEnd --></html>
